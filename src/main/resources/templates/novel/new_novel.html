@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+			layout:decorate="~{layout/layout}">
+<head>
+
+		<!-- 個別 CSS -->
+		<link	th:href="@{/css/user/user_page.css}"
+				rel="stylesheet">
+		<title>小説を書くところ</title>
+</head>
+	<body>
+		<div layout:fragment = "content">
+			<div class = "header border-bottom">
+				<h1 class = "h2">小説を書くところ</h1>
+				<br>
+				<form th:action = "@{/novel/save/draft}" th:object = "${draft}" th:method = "post" id = "draft_save">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>ジャンル</th>
+							<td>
+								<select name = "genre" >
+									<option selected value = "0" >ジャンルを選択</option>
+									<option value="1">ミステリー</option>
+									<option value="2">青春</option>
+									<option value="3">恋愛</option>
+									<option value="4">SF</option>
+									<option value="5">ファンタジー</option>
+									<option value="6">ホラー</option>
+									<option value="7">歴史</option>
+									<option value="8">ノンフィクション</option>
+									<option value="9">経済</option>
+									<option value="10">政治</option>
+									<option value="11">児童</option>
+									<option value="12">ノンジャンル</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>小説の長さ</th>
+							<td>
+								<select name = "novelLength" >
+									<option selected value = "0" >長さを選択</option>
+									<option value="1">長編</option>
+									<option value="2">中編</option>
+									<option value="3">短編</option>
+									<option value="4">掌編</option>
+									<option value="5">連載</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>タイトル</th>
+							<td>
+								<textarea rows="1" cols="90" name = "title"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<th>章管理</th>
+							<td>
+								<input type = "number" name = "chapter" th:text = "章">
+								<input type = "number" name = "section" th:text = "節">
+								<input type = "number" name = "clause" th:text = "項">
+							</td>
+						</tr>
+						<tr>
+							<th>本文</th>
+							<td>
+								<textarea rows="20" cols="90" name = "text"></textarea>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				</form>
+			</div>
+			<br>
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col">
+					
+							<div class="d-grid gap-2 col-6">
+								<button form = "draft_save" class="btn btn-primary" type="submit">下書きを保存</button>
+							</div>
+					
+					</div>
+					<div class="col">
+						<div class="d-grid gap-2 col-6">
+							<button class="btn btn-primary" type="submit">内容を保存</button>
+						</div>
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

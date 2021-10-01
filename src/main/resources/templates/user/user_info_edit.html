@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+			layout:decorate="~{layout/layout}">
+<head>
+
+		<!-- 個別 CSS -->
+		<link	th:href="@{/css/user/user_page.css}"
+				rel="stylesheet">
+		<title>アカウント情報編集</title>
+	</head>
+<body>
+	<div layout:fragment = "content">
+		<form th:action = "@{/user/user_info/edit/update}" th:object = "${edit_user}" th:method = "post" id = "update">
+			<div class = "header border-bottom">
+				<h1 class = "h2" th:text = "#{edit.display}"></h1>
+				<br>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th scope="row" th:text = "#{ID}">:</th>
+							<td>
+								<p th:text = "*{id}"></p>
+								<input type = "hidden" name = "id" th:field = "*{id}">
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" th:text = "#{PenName}">:</th>
+							<td>
+								<input type="text" name = "penName" placeholder="25文字以内" th:field = "*{penName}">
+								<span style="color: red;" th:if="${#fields.hasErrors('penName')}" th:errors="*{penName}"></span>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" th:text = "#{Email}">:</th>
+							<td>
+								<input type="text" name = "eMail" placeholder="メールアドレス" th:field = "*{eMail}">
+								<span style="color: red;" th:if="${#fields.hasErrors('eMail')}" th:errors="*{eMail}"></span>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" th:text = "#{BirthDay}">:</th>
+							<td>
+								<p th:text = "*{birthYear} + 年 + *{birthMonth} + 月 + *{birthDay} + 日"></p>
+								<input type = "hidden" name = "birthYear" th:field = "*{birthYear}">
+								<input type = "hidden" name = "birthMonth" th:field = "*{birthMonth}">
+								<input type = "hidden" name = "birthDay" th:field = "*{birthDay}">
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" th:text = "#{UserCategory}">:</th>
+							<td>
+								<select class="form-select" id="userCategorySelect" name = "userCategory" th:field = "*{userCategory}" >
+									<option selected value = " " >Choose...</option>
+									<option value="Writer" th:text = "#{Writer}"></option>
+									<option value="Reader" th:text = "#{Reader}"></option>
+									<option value="Painter" th:text = "#{Painter}"></option>
+									<option value="Actor" th:text = "#{Actor}"></option>
+								</select>
+								<span style="color: red;" th:if="${#fields.hasErrors('userCategory')}" th:errors="*{userCategory}"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</form>
+		<br>
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col"></div>
+				<div class="col">
+					<div class="d-grid gap-2 col-6">
+						<button form = "update" class="btn btn-primary" type="submit" th:text = "#{update}"></button>
+					</div>
+				</div>
+				<div class="col"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

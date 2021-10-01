@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "io.post.novel.mapper.UserSignUpMapper">
+	
+	<insert id = "create" parameterType = "io.post.novel.dto.UserRequest"
+		useGeneratedKeys=" true" keyProperty="id">
+	
+	<![CDATA[
+		INSERT INTO users(pen_name,e_mail,password,birth_year,birth_month,birth_day,user_category,avf,locked,expired)
+			VALUES (#{penName},#{eMail},#{password},#{birthYear},#{birthMonth},#{birthDay},#{userCategory},CURDATE(),0,0)
+		]]>
+		</insert>
+		
+	<insert id = "createRole" parameterType = "io.post.novel.dto.UserRequest">
+	
+	<![CDATA[
+		INSERT INTO user_roles(user_id,role_id)
+			VALUES (#{id},1)
+		]]>
+		</insert>
+</mapper>

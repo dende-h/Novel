@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+			layout:decorate="~{layout/layout}">
+<head>
+
+		<!-- 個別 CSS -->
+		<link	th:href="@{/css/user/user_page.css}"
+				rel="stylesheet">
+		<title>ユーザー退会</title>
+	</head>
+<body>
+	<div layout:fragment = "content">
+		<form th:action = "@{/user/user_delete/check}" th:method = "post" id = "delete">
+			<div class = "header border-bottom">
+				<h1 class = "h2">退会フォーム</h1>
+				<br>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th scope="row" th:text = "#{PenName}">:</th>
+							<td>
+								<input type="text" name = "penName" placeholder="ペンネームを入力">
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" th:text = "#{Password}">:</th>
+							<td>
+								<input type="text" name = "password" placeholder="パスワードを入力">
+								<!--<span style="color: red;" th:if="${#fields.hasErrors('penName')}" th:errors="*{penName}"></span>-->
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</form>
+		<br>
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col"></div>
+				<div class="col">
+					<div class="d-grid gap-2 col-6">
+						<button form = "delete" class="btn btn-primary" type="submit" th:text = "#{user.confirm.btn}"></button>
+					</div>
+				</div>
+				<div class="col"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
