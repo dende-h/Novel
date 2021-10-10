@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class NovelEntity {
 
-	
+	private int id;
 	private int genre;
 	private int novelLength;
 	private String title;
@@ -13,7 +13,7 @@ public class NovelEntity {
 	private int section;
 	private int clause;
 	private String text;
-	private int userId;
+	private long userId;
 	
 	
 }

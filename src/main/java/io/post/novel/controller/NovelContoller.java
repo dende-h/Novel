@@ -32,6 +32,6 @@ public class NovelContoller {
 		System.out.println(draft);
 		novelService.save(draft);
 		
-		return "novel/new_novel";
+		return "novel/draft_list";
 	}
 }
