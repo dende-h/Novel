@@ -17,4 +17,9 @@ public class NovelService {
 		
 	}
 
+	public void draftList(long userId) {
+
+		
+	}
+
 }

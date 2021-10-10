@@ -30,7 +30,12 @@ public class NovelContoller {
 		long userId = userForm.getId();
 		draft.setUserId(userId);
 		System.out.println(draft);
+		
+		//下書き保存
 		novelService.save(draft);
+		
+		//下書き一覧取得
+		novelService.draftList(draft.getUserId());
 		
 		return "novel/draft_list";
 	}
