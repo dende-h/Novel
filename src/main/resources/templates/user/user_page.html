@@ -12,7 +12,7 @@
 <body>
 	<div layout:fragment = "content">
 		<div class = "header border-bottom" >
-			<h1 class = "h2" th:text = "${login_user} + の + #{fun.space}"></h1>
+			<h1 class = "h2" th:text = "${login_user} + さんのユーザページ"></h1>
 			<br>
 				<table class="table">
 					<tbody>
@@ -34,35 +34,6 @@
 						<tr>
 							<th><a th:href="@{/novel/all/archive}">他の人の小説を探す</a></th>
 						</tr>
-						<!--<tr>
-							<th scope="row" th:text = "#{Password}">:</th>
-							<td>
-								<input type="text" name = "password" placeholder="半角英数8字以上20字以内" th:field = "*{password}">
-								<!--<span style="color: red;" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row" th:text = "#{BirthDay}">:</th>
-							<td>
-								<p th:text = "*{birthYear} + 年 + *{birthMonth} + 月 + *{birthDay} + 日"></p>
-								<input type = "hidden" name = "birthYear" th:field = "*{birthYear}">
-								<input type = "hidden" name = "birthMonth" th:field = "*{birthMonth}">
-								<input type = "hidden" name = "birthDay" th:field = "*{birthDay}">
-							</td>
-						</tr>
-						<tr>
-							<th scope="row" th:text = "#{UserCategory}">:</th>
-							<td>
-								<select class="form-select" id="userCategorySelect" name = "userCategory" th:field = "*{userCategory}" >
-									<option selected value = " " >Choose...</option>
-									<option value="Writer" th:text = "#{Writer}"></option>
-									<option value="Reader" th:text = "#{Reader}"></option>
-									<option value="Painter" th:text = "#{Painter}"></option>
-									<option value="Actor" th:text = "#{Actor}"></option>
-								</select>
-								<!--<span style="color: red;" th:if="${#fields.hasErrors('userCategory')}" th:errors="*{userCategory}"></span>
-							</td>
-						</tr> -->
 					</tbody>
 				</table>
 		</div>

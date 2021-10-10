@@ -1,12 +1,14 @@
 package io.post.novel.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import io.post.novel.auth.UserForm;
 import io.post.novel.dto.NovelRequest;
 import io.post.novel.service.NovelService;
 
@@ -23,7 +25,10 @@ public class NovelContoller {
 	}
 	
 	@PostMapping("/novel/save/draft")
-	public String saveDraft(@ModelAttribute NovelRequest draft , Model model) {
+	public String saveDraft(@ModelAttribute NovelRequest draft , Model model,@AuthenticationPrincipal UserForm userForm) {
+		
+		long userId = userForm.getId();
+		draft.setUserId(userId);
 		System.out.println(draft);
 		novelService.save(draft);
 		
