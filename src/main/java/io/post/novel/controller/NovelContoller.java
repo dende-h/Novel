@@ -1,5 +1,7 @@
 package io.post.novel.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import io.post.novel.auth.UserForm;
 import io.post.novel.dto.NovelRequest;
+import io.post.novel.entity.NovelEntity;
 import io.post.novel.service.NovelService;
 
 @Controller
@@ -35,7 +38,7 @@ public class NovelContoller {
 		novelService.save(draft);
 		
 		//下書き一覧取得
-		novelService.draftList(draft.getUserId());
+		List<NovelEntity> novelList = novelService.draftList(draft.getUserId());
 		
 		return "novel/draft_list";
 	}
