@@ -38,8 +38,16 @@ public class NovelContoller {
 		novelService.save(draft);
 		
 		//下書き一覧取得
-		List<NovelEntity> novelList = novelService.draftList(draft.getUserId());
+		//List<NovelEntity> novelList = novelService.draftList(draft.getUserId());
+		//model.addAttribute("novel_list",novelList);
 		
+		return "redirect:/novel/draft/list";
+	}
+	
+	@RequestMapping("novel/draft/list")
+	public String draftList(Model model,@AuthenticationPrincipal UserForm userForm) {
+		List<NovelEntity> novelList = novelService.draftList(userForm.getId());
+		model.addAttribute("novel_list",novelList);
 		return "novel/draft_list";
 	}
 }
