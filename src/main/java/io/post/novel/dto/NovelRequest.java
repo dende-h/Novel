@@ -17,12 +17,6 @@ public class NovelRequest {
 	@NotBlank
 	private String title;
 	
-	private int chapter;
-	
-	private int section;
-	
-	private int clause;
-	
 	private String text;
 	
 	private long userId;
