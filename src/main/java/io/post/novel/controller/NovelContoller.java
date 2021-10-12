@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,5 +57,16 @@ public class NovelContoller {
 		List<NovelEntity> novelList = novelService.draftList(userForm.getId());
 		model.addAttribute("novel_list",novelList);
 		return "novel/draft_list";
+	}
+	
+	/*
+	 * comingsoonへの遷移
+	 */
+	@GetMapping("novel/in_preparation")
+	public String comingsoon(Model model,@AuthenticationPrincipal UserForm userForm) {
+		String loginUser = userForm.getPenName();
+		
+		model.addAttribute("login_user",loginUser);
+		return"novel/in_preparation";
 	}
 }

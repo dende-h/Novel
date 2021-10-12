@@ -237,4 +237,6 @@ public class UserDisplayController {
 		//リダイレクトでログアウト
 		return "redirect:/signout";
 	}
+	
+	
  }
