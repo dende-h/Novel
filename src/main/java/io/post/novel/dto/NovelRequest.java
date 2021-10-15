@@ -5,6 +5,7 @@ import javax.validation.constraints.Positive;
 
 import lombok.Data;
 
+
 @Data
 public class NovelRequest {
 	

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,29 +30,35 @@ public class NovelContoller {
 	
 	@Autowired NovelService novelService;
 	@Autowired HttpSession session;
-	
+	/*
 	@ModelAttribute("novelSession")
 	NovelRequest setUpNovelSession()throws HttpSessionRequiredException{
 		System.out.println("create inputForm");
 		return new NovelRequest();
 	}
-	
+	*/
 	
 	/*
 	 * フォームへ遷移
 	 */
 	
 	@RequestMapping("/novel/write")
-	public String toNovelPage(@ModelAttribute("session") NovelRequest draft, Model model){
-		
+	public String toNovelPage(@ModelAttribute NovelRequest draft, Model model){
+		/*
 		try {
 			setUpNovelSession();
 		} catch (HttpSessionRequiredException e){
 			return "novel/new_novel";
 		}
-		
-		
+		*/
+		/*
+		boolean checkSession = sessionStatus.isComplete();
+		if(checkSession == false) {
+			System.out.println("sessionの中身はnullです");
+		}
+		*/
 		System.out.println(draft);
+		
 		
 		model.addAttribute("draft", draft);
 		
@@ -66,7 +71,7 @@ public class NovelContoller {
 	
 	
 	@RequestMapping("/novel/write/save")
-	public String toNovelPageSave( @ModelAttribute("session") NovelRequest draft, Model model) {
+	public String sessionSave( @ModelAttribute("session") NovelRequest draft, Model model) {
 		
 		
 		System.out.println(draft);
@@ -126,12 +131,19 @@ public class NovelContoller {
 		//下書き保存
 		novelService.save(draft);
 		
-		//下書き一覧取得
-		//List<NovelEntity> novelList = novelService.draftList(draft.getUserId());
-		//model.addAttribute("novel_list",novelList);
+		return "redirect:/novel/draft/list";
+	}
+	
+	/*
+	 * 一時保存の削除
+	 */
+	@RequestMapping(value = "/novel/save/draft",params = "draft_session_delete")
+	public String sessionDelete(@ModelAttribute NovelRequest draft,Model model,SessionStatus sessionStatus) {
+		
 		sessionStatus.setComplete();
 		
-		return "redirect:/novel/draft/list";
+		return "novel/new_novel";
+		
 	}
 	
 	

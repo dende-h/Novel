@@ -13,6 +13,7 @@
 		<div layout:fragment = "content">
 			<div class = "header border-bottom">
 				<h1 class = "h2">小説を書くところ</h1>
+				<p th:text = ${session.items}></p>
 				<br>
 				<div th:unless = "${draft}">
 				<form th:action = "@{/novel/save/draft}" th:method = "post" id = "draft_save">
@@ -134,11 +135,15 @@
 					<div class="col">
 					
 							<div class="d-grid gap-2 col-6">
-								<button form = "draft_save" name = "draft_save" class="btn btn-primary" type="submit">下書き保存</button>
+								<button form = "draft_save" name = "draft_session_delete" class="btn btn-primary" type="submit">一時保存削除</button>
 							</div>
 					
 					</div>
-					<div class="col"></div>
+					<div class="col">
+							<div class="d-grid gap-2 col-6">
+								<button form = "draft_save" name = "draft_save" class="btn btn-primary" type="submit">下書き保存</button>
+							</div>
+					</div>
 				</div>
 			</div>
 		</div>
