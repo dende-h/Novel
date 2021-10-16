@@ -71,12 +71,17 @@ public class NovelContoller {
 	
 	
 	@RequestMapping("/novel/write/save")
-	public String sessionSave( @ModelAttribute("session") NovelRequest draft, Model model) {
+	public String sessionSave( @ModelAttribute NovelRequest draft, Model model) {
 		
 		
 		System.out.println(draft);
 		
-		model.addAttribute("draft", draft);
+		NovelRequest savedDraft = (NovelRequest)model.getAttribute("session");
+		
+		System.out.println(savedDraft);
+		
+		model.addAttribute("draft",savedDraft);
+		
 		/*try { 
 			boolean req = session.getAttribute("genre").equals(0);
 			
