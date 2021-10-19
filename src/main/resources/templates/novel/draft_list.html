@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+			layout:decorate="~{layout/layout}">
 <head>
-<meta charset="UTF-8">
-<title>下書き一覧</title>
+
+		<!-- 個別 CSS -->
+		<link	th:href="@{/css/user/user_page.css}"
+				rel="stylesheet">
+		<title>下書き一覧</title>
 </head>
-<body>
-ページ遷移しました
-</body>
+	<body>
+		<div layout:fragment = "content">
+			<div class = "header border-bottom">
+				<div th:if="${novel_list}">
+					<table th:each="novel_list:${novel_list}" th:object="${novel_list}">
+						<tr>
+							<th class="cell_title">タイトル：</th>
+							<td th:text="*{title}"></td>
+						</tr>
+						<tr>
+							<th class="cell_title">最終更新日時：</th>
+							<td>これから実装予定</td>
+						</tr>
+						<table>
+							<tr>
+								<td>
+									<!-- <form th:action = "@{}" th:method = "delete"> -->
+										<input type = "submit" value = "DELETE" style = "width: 75px"/>
+									<!-- </form>  -->
+								</td>
+								<td>
+									<!-- <form th:action = "｛}" th:method = "put"> -->
+										<input type = "submit" value = "UPDATE" style = "width: 75px"/>
+									<!-- </form> --> 
+								</td>
+							</tr>
+						</table>
+						<br>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
